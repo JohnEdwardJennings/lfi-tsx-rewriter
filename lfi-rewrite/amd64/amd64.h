@@ -46,6 +46,14 @@ lo(const char* reg)
     return reg;
 }
 
+static bool
+read_access(const char* insn)
+{
+    if (strncmp(insn, "div", strlen("div")) == 0)
+        return true;
+    return false;
+}
+
 static char*
 rtcall(unsigned offset)
 {
