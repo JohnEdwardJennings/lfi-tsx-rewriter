@@ -17,6 +17,7 @@ static void mktsxpostcall() {
     mkinsn("jz %s", label);
     mkinsn("xend");
     mklabel(label);
+    mkinsn("mov %%rcx, %%rax");
     free(label);
 }
 
@@ -175,6 +176,7 @@ Ret = 'ret' 'q'? - {
         char* label = xasprintf(".LFI_TSX_ABORT%d", count++);	
 	
         // happy path
+        mkinsn("mov %%rax, %%rcx");
         mkinsn("xbegin %s", label);
         mkinsn(".bundle_lock");
         bundle_mask_mem("%rsp");
