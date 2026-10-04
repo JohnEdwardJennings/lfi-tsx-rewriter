@@ -29,6 +29,7 @@ bundle_mask_mem(const char* reg)
         mkinsn("andq $0xffffffff%s, (%s)", bundle_mask_constant(), reg);
         mkinsn("addq %%r14, (%s)", reg);
     } else if (args.boxtype > BOX_BUNDLEJUMPS) {
+        mkinsn("movl $0, 0x4(%s)", reg);
         mkinsn("andl $0x%s, (%s)", bundle_mask_constant(), reg);
         mkinsn("addq %%r14, (%s)", reg);
     } else {
