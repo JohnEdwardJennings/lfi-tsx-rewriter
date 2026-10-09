@@ -95,6 +95,11 @@ amd64_rewrite(FILE* input, struct output* output)
             passes[i].disabled = false;
     }
 
+    // force-disable all passes
+    for (size_t i = 0; i < npass; i++) {
+        passes[i].disabled = true;
+    }
+
     for (size_t i = 0; i < npass; i++) {
         if (passes[i].disabled)
             continue;
